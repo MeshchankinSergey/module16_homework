@@ -23,9 +23,8 @@ const xmlString = `
 
 const xmlDOM = parser.parseFromString(xmlString, "text/xml");
 
-// console.log(xmlDOM);
-
 const listNode = xmlDOM.querySelector("list");
+
 const studentNodeA = listNode.querySelector("#a");
 const nameNodeA = studentNodeA.querySelector("name");
 const firstNodeA = studentNodeA.querySelector("first");
@@ -65,4 +64,4 @@ const result = {
   ]
 };
 
-  console.log('result', result);
+console.log('result', result);
