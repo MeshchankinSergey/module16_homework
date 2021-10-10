@@ -2,7 +2,7 @@ const parser = new DOMParser();
 
 const xmlString = `
 <list>
-  <student>
+  <student id="a">
     <name lang="en">
       <first>Ivan</first>
       <second>Ivanov</second>
@@ -10,7 +10,7 @@ const xmlString = `
     <age>35</age>
     <prof>teacher</prof>
   </student>
-  <student>
+  <student id="b">
     <name lang="ru">
       <first>Петр</first>
       <second>Петров</second>
@@ -23,20 +23,46 @@ const xmlString = `
 
 const xmlDOM = parser.parseFromString(xmlString, "text/xml");
 
-const listNode = xmlDOM.querySelector("list");
-const studentNode = listNode.querySelector("student");
-const nameNode = studentNode.querySelector("name");
-const firstNode = nameNode.querySelector("first");
-const secondNode = nameNode.querySelector("second");
-const ageNode = studentNode.querySelector("age");
-const profNode = studentNode.querySelector("prof");
+// console.log(xmlDOM);
 
-const langAttr = nameNode.getAttribute('lang');
+const listNode = xmlDOM.querySelector("list");
+const studentNodeA = listNode.querySelector("#a");
+const nameNodeA = studentNodeA.querySelector("name");
+const firstNodeA = studentNodeA.querySelector("first");
+const secondNodeA= studentNodeA.querySelector("second");
+const ageNodeA = studentNodeA.querySelector("age");
+const profNodeA = studentNodeA.querySelector("prof");
+
+const langAttrA = nameNodeA.getAttribute('lang');
+
+const studentA = {
+    name: firstNodeA.textContent + " " + secondNodeA.textContent,
+    age: Number (ageNodeA.textContent),
+    prof: profNodeA.textContent,
+    lang: langAttrA,
+  };
+
+const studentNodeB = listNode.querySelector("#b");
+const nameNodeB = studentNodeB.querySelector("name");
+const firstNodeB = studentNodeB.querySelector("first");
+const secondNodeB = studentNodeB.querySelector("second");
+const ageNodeB = studentNodeB.querySelector("age");
+const profNodeB = studentNodeB.querySelector("prof");
+
+const langAttrB = nameNodeB.getAttribute('lang');
+
+const studentB = {
+    name: firstNodeB.textContent + " " + secondNodeB.textContent,
+    age: Number (ageNodeB.textContent),
+    prof: profNodeB.textContent,
+    lang: langAttrB,
+  };
 
 const result = {
-    name: firstNode.textContent + " " + secondNode.textContent,
-    age: Number (ageNode.textContent),
-    prof: profNode.textContent,
-    lang: langAttr,
-  };
+  list : [
+    studentA,
+    studentB
+  ]
+};
+
   console.log('result', result);
