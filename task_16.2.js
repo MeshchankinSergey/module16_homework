@@ -10,7 +10,7 @@ const result = {
     salary: developer.salary,
   };
 
-console.log('result', result); // выводит объект js в косоль
+// console.log('result', result);
 
-const myString = JSON.stringify(developer);
-console.log(myString); // выводит JSON в консоль
+const newJsonString = JSON.stringify(developer);
+console.log(newJsonString); // выводит JSON в консоль
