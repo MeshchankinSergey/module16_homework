@@ -2,7 +2,7 @@ const parser = new DOMParser();
 
 const xmlString = `
 <list>
-  <student id="a">
+  <student id="first">
     <name lang="en">
       <first>Ivan</first>
       <second>Ivanov</second>
@@ -10,7 +10,7 @@ const xmlString = `
     <age>35</age>
     <prof>teacher</prof>
   </student>
-  <student id="b">
+  <student id="second">
     <name lang="ru">
       <first>Петр</first>
       <second>Петров</second>
@@ -25,42 +25,35 @@ const xmlDOM = parser.parseFromString(xmlString, "text/xml");
 
 const listNode = xmlDOM.querySelector("list");
 
-const studentNodeA = listNode.querySelector("#a");
-const nameNodeA = studentNodeA.querySelector("name");
-const firstNodeA = studentNodeA.querySelector("first");
-const secondNodeA= studentNodeA.querySelector("second");
-const ageNodeA = studentNodeA.querySelector("age");
-const profNodeA = studentNodeA.querySelector("prof");
+const studentNodeFirst = listNode.querySelector("#first");
 
-const langAttrA = nameNodeA.getAttribute('lang');
+const studentNodeSecond = listNode.querySelector("#second");
 
-const studentA = {
-    name: firstNodeA.textContent + " " + secondNodeA.textContent,
-    age: Number (ageNodeA.textContent),
-    prof: profNodeA.textContent,
-    lang: langAttrA,
+function studentObj (node){
+  let nameNode = node.querySelector("name");
+  let firstNode = node.querySelector("first");
+  let secondNode = node.querySelector("second");
+  let ageNode = node.querySelector("age");
+  let profNode = node.querySelector("prof");
+
+  let langAttr = nameNode.getAttribute('lang');
+  
+  let student = {
+    name: firstNode.textContent + " " + secondNode.textContent,
+    age: Number (ageNode.textContent),
+    prof: profNode.textContent,
+    lang: langAttr,
   };
+   return student;
+}
 
-const studentNodeB = listNode.querySelector("#b");
-const nameNodeB = studentNodeB.querySelector("name");
-const firstNodeB = studentNodeB.querySelector("first");
-const secondNodeB = studentNodeB.querySelector("second");
-const ageNodeB = studentNodeB.querySelector("age");
-const profNodeB = studentNodeB.querySelector("prof");
-
-const langAttrB = nameNodeB.getAttribute('lang');
-
-const studentB = {
-    name: firstNodeB.textContent + " " + secondNodeB.textContent,
-    age: Number (ageNodeB.textContent),
-    prof: profNodeB.textContent,
-    lang: langAttrB,
-  };
+const studentFirst = studentObj (studentNodeFirst);
+const studentSecond = studentObj (studentNodeSecond);
 
 const result = {
   list : [
-    studentA,
-    studentB
+    studentFirst,
+    studentSecond
   ]
 };
 
